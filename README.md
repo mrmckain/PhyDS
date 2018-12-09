@@ -1,3 +1,5 @@
 # PhyDS
 
 PhyDS is a series of scripts designed to identify the evolutionary origin of subgenomes. 
+
+PhyDS takes a focal set of paralogs derived from either a genome (e.g. syntenic homoeologs) or transcriptome and searches a set of gene trees to identify what the most closely related gene sequences are to these focal paralogs. PhyDS first identifies the paralogs present in a gene tree and then moves to the direct ancestral node of the paralog. PhyDS then identifies all gene sequences (tips) that are direct descendants of the current node. Taxon identities of these sequences are assessed to determine if one of two conditions is met: 1) taxa are present that are not in a user-given list of taxa to ignore and 2) the paralog mate of the current focal paralog is found. If neither of these conditions is met, PhyDS will proceed to the ancestor node of the current node and repeat the process. Once these conditions are met, PhyDS records the bootstrap value of the node, the paralogs of interest, and the sequence identities found in the clade descendant from the current node.
