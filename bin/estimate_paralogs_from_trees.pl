@@ -48,7 +48,7 @@ my %species_index;
 my %node_index;
 my $node_count=0;
 
-
+my @outs = split(/,/,$outgroups);
 ###Estimate all possible pairs if option chosen.###
 my @file = <$trees/*>;
 my %putative_paralogs;
@@ -63,7 +63,12 @@ for my $treefile (@file){
         for my $taxa (@taxa){
             my $taxon = $taxa->id;
             $taxon =~ /(.*?)-(.*?)/;
-            $species_taxa{$1}=1;
+            my $specid = $1;
+               for my $out (@outs){
+            if ($specid =~ /$out/){
+                    next;
+             }
+            $species_taxa{$specid}=1;
         }
     }
 }
